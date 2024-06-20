@@ -1,0 +1,46 @@
+Cadastro Assistido
+
+Dados Pessoais:
+
+	Nome completo
+	Data de nascimento
+	Endereço completo
+	Telefone(s)
+	E-mail
+	Profissão
+	Estado civil
+	Nome do cônjuge (se casado)
+	Nome dos filhos (se houver)
+	Histórico Espiritual:
+
+Religião
+	Frequência em cultos religiosos
+	Participação em grupos ou atividades espirituais
+	Experiências espirituais anteriores (visões, sonhos, etc.)
+	Envolvimento com práticas esotéricas (tarô, leitura de auras, etc.)
+
+Motivo da Consulta:
+	Descrever o principal motivo que o levou a buscar tratamento espiritual.
+	Especificar se há algum problema de saúde física, emocional ou mental que esteja relacionado à busca por ajuda.
+	Mencionar outros desafios ou situações difíceis que esteja enfrentando.
+
+Queixas Espirituais:
+	Descrever detalhadamente os sintomas, sensações ou dificuldades que considera ter origem espiritual.
+	Pode incluir:
+	Sensação de vazio ou falta de propósito
+	Angústia, ansiedade ou depressão
+	Dificuldades nos relacionamentos
+	Falta de energia ou vitalidade
+	Pesadelos ou distúrbios do sono
+	Presença de entidades ou energias negativas
+	Dificuldades de concentração ou memória
+	Crises de pânico ou ataques de raiva
+	Pensamentos suicidas
+	É importante ser o mais específico possível ao descrever suas queixas, para que o terapeuta espiritual possa ter uma melhor compreensão do seu caso.
+
+Tratamento
+	Tipo de Tratamento
+	Data Inicio
+	Data Termino
+	Recomendação Espiritual
+	
