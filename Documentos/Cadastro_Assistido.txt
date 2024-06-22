@@ -1,12 +1,13 @@
-Cadastro Assistido
+Cadastro Assistido ---------------------------------------------------------------------------
 
 Dados Pessoais:
 
 	Nome completo
-	Data de nascimento
-	Endereço completo
+	Data de nascimento	
 	Telefone(s)
 	E-mail
+	
+	Endereço completo
 	Profissão
 	Estado civil
 	Nome do cônjuge (se casado)
@@ -19,6 +20,7 @@ Religião
 	Experiências espirituais anteriores (visões, sonhos, etc.)
 	Envolvimento com práticas esotéricas (tarô, leitura de auras, etc.)
 
+Prontuario ------------------------------------------------------------------------------
 Motivo da Consulta:
 	Descrever o principal motivo que o levou a buscar tratamento espiritual.
 	Especificar se há algum problema de saúde física, emocional ou mental que esteja relacionado à busca por ajuda.

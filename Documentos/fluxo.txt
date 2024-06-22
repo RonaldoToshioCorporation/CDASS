@@ -1,0 +1,36 @@
+Mapeamento do processo atual
+1)O assistido é submetido a uma entrevista
+2)O entrevistador faz o cadastro do prontuário (dados pessoais).
+3)
+
+Processo proposto - fluxo de tratamento.
+
+1)Baixar o aplicativo e faz cadastro o preliminar
+    Nome completo
+	Data de nascimento
+    telefone
+    e-mail
+
+2)O recepcionista registra a primeira consulta no prontuario do assistido a primeira consulta como tratamento P2.
+E encaminha para o entrevistador.
+Explica : que vai ter uma entrevista e deve fazer 4 sessões.
+         regras: 
+            2.1)Deve escolher um dia da semana (exemplo: terça ou domingo) e deve ser somente nestes dias.
+
+            2.2)O intervalo permitido para fazer são de até 3 semanas para ser feito.
+
+
+3)O entrevistador registra o motivo da consulta aberta no item 2 e faz a entrevista.
+
+4)Ao final do tratamento (o ciclo de 4 semanas com confirmado). O status deve ser de revisao e atualização pelo Verificador.
+
+5)O verificador deve avaliar e definir o proximo tratamento concluindo a verificação.
+
+6) A aplicação mostrará para o assistido nesse primeiro do novo tratamento (novo ciclo) o nome e que deve ser uma feito uma nova entrevista.
+
+7) O assistido poderá fazer o tratamento na proxima visita e se possível fazer a entrevista.
+
+8)O entrevistador faz a entrevista e confirma a conclusao da mesma, tirando a pendencia do assistido.
+
+
+
