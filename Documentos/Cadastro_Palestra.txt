@@ -1,0 +1,15 @@
+Cadastro Palestra
+
+Data/ Hora Palestra
+Tema da Palestra
+Tempo Previsto
+
+Tipo de Palestra
+	Presencial/ Remota
+
+Nome do Palestrante
+
+Contato Palestrante
+	Telefone Palestrante
+	Email Palestrante
+	Endereço
