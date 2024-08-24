@@ -2,7 +2,7 @@
 version: "3.8"
 services:
   cdassweapp:
-    build: ./CDASS.WebApp
+    build: ./vite-project
     container_name: cadasswebapp_c
     ports:
       - '5173:5173'
