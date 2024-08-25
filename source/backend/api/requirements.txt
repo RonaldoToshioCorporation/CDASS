@@ -20,7 +20,8 @@ pytz==2022.2.1
 six==1.16.0
 SQLAlchemy==2.0.32
 SQLAlchemy-Utils==0.41.2
-pg8000 = 1.31.2
+pg8000==1.31.2
+psycopg2==2.9.9
 typing_extensions==4.6.1
 Werkzeug==2.1.2
 zipp==3.8.1

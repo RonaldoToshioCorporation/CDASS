@@ -18,13 +18,13 @@ if not os.path.exists(db_path):
 url_object = URL.create(
     "postgresql+pg8000",
     username="postgres",
-    password="ytos1612",  # plain (unescaped) text
+    password="postgres",
     host="localhost",
     database="dbteste",
 )
-
+url = 'postgresql+psycopg2://postgres:postgres@192.168.15.138/dbteste?port=5432'
 # cria a engine de conexão com o banco
-engine = create_engine(url_object)
+engine = create_engine(url)
 
 # Instancia um criador de seção com o banco
 Session = sessionmaker(bind=engine)
