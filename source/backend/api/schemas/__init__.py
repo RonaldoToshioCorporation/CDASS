@@ -1,9 +1,4 @@
 from schemas.error import ErrorSchema
 
-from schemas.tipo_operacao import TipoOperacaoSchema, TipoOperacaoEditSchema, TipoOperacaoBuscaDelSchema,\
-                                  TipoOperacaoViewSchema, apresenta_tipo_operacao, apresenta_lista_tipo_operacao,\
-                                  apresenta_lista_tipo_operacao,ListaTipoOperacaosSchema
-
-from schemas.operacao import OperacaoSchema, OperacaoEditSchema, OperacaoBuscaDelSchema, OperacaoViewSchema,\
-                             ListaOperacaosSchema, apresenta_operacao, apresenta_lista_operacao,\
-                             OperacaoBuscaPorVeiculoSchema, OperacaoSaidaVeiculoSchema, OperacaoBuscaPorDataEntradaSchema
+from schemas.album import AlbumSchema, AlbumEditSchema, AlbumViewSchema, apresenta_album, apresenta_lista_Albuns,\
+                          AlbumBuscaDelSchema, ListaAlbunsSchema

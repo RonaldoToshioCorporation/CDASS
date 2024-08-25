@@ -1,12 +1,12 @@
 from sqlalchemy_utils import database_exists, create_database
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from sqlalchemy import URL
 import os
 
 # importando os elementos definidos no modelo
 from model.base import Base
-from model.tipo_operacao import TipoOperacao
-from model.operacao import Operacao
+from model.album import Album
 
 db_path = "database/"
 # Verifica se o diretorio não existe
@@ -15,10 +15,16 @@ if not os.path.exists(db_path):
    os.makedirs(db_path)
 
 # url de acesso ao banco (essa é uma url de acesso ao sqlite local)
-db_url = 'sqlite:///%s/db.sqlite3' % db_path
+url_object = URL.create(
+    "postgresql+pg8000",
+    username="postgres",
+    password="ytos1612",  # plain (unescaped) text
+    host="localhost",
+    database="dbteste",
+)
 
 # cria a engine de conexão com o banco
-engine = create_engine(db_url, echo=False)
+engine = create_engine(url_object)
 
 # Instancia um criador de seção com o banco
 Session = sessionmaker(bind=engine)

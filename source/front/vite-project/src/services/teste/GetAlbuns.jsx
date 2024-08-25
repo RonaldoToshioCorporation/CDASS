@@ -1,7 +1,8 @@
 const GetAlbuns = async () =>
 {
     try {
-        const response = await fetch(`${import.meta.env.VITE_URL_API}/Albun?codigo=`+ id); 
+        let url = `${import.meta.env.VITE_URL_API}/${import.meta.env.VITE_URL_API_ALBUM}`;
+        const response = await fetch(url); 
 
         if (!response.ok) {   
             return null;            
