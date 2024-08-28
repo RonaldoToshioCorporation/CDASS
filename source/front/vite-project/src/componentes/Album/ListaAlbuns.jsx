@@ -1,4 +1,4 @@
-import React , { useState, useEffect }  from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
     Box,
@@ -6,6 +6,7 @@ import {
     Divider,
     Paper,
     styled,
+    Stack,
     Table,
     TableBody,
     TableCell,
@@ -15,7 +16,7 @@ import {
     TableHead,
     TablePagination,
     TableRow,
-    TextField
+    Container
 } from '@mui/material/';
 
 import IconButton from '@mui/material/IconButton';
@@ -23,8 +24,6 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-
-import EditIcon from '@mui/icons-material/Edit';
 
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
@@ -101,20 +100,18 @@ TablePaginationActions.propTypes = {
 function ListaAlbuns() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    const [codigoUsuario] = useState(1);
     const [lista, setLista] = useState([]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
-    useEffect(()=>{
+    useEffect(() => {
         GetDados();
-    },[]);
+    }, []);
 
-    const GetDados = async ()=>
-    {
+    const GetDados = async () => {
         let retorno = await GetAlbuns();
-        setLista(retorno);
+        setLista(retorno.albuns);
         return retorno;
     }
 
@@ -122,7 +119,7 @@ function ListaAlbuns() {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-  
+
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: theme.palette.common.black,
@@ -136,7 +133,7 @@ function ListaAlbuns() {
 
     const StyledTableRow = styled(TableRow)(({ theme }) => ({
         '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.action.hover,                        
+            backgroundColor: theme.palette.action.hover,
         },
         // hide last border
         '&:last-child td, &:last-child th': {
@@ -144,78 +141,87 @@ function ListaAlbuns() {
         },
     }));
 
-  
+
     Moment.locale('pt-BR');
-   
+
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="lista">
-                <TableHead sx={{ height: 40 }}>
-                    <TableRow>
-                        <StyledTableCell align="center">Id</StyledTableCell>                        
-                        <StyledTableCell align="center">Artista</StyledTableCell>
-                        <StyledTableCell align="center">Titulo</StyledTableCell>
-                        <StyledTableCell align="center">Preço</StyledTableCell>                        
-                        <StyledTableCell align="center">Ação</StyledTableCell>
-                    </TableRow>
-                </TableHead>
+           <>
+                <Stack direction={'row'}>
+                    <Button variant='contained' color='primary'>
+                        <Link style={{ textDecoration: "none", color: "white" }} to={"/Teste/CadastroAlbum"}>Novo</Link>
+                    </Button>
+                </Stack>
+                <TableContainer>
+                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                        <TableHead sx={{ height: 40 }}>
+                            <TableRow>
+                                <StyledTableCell align="center">Id</StyledTableCell>
+                                <StyledTableCell align="center">Artista</StyledTableCell>
+                                <StyledTableCell align="center">Titulo</StyledTableCell>
+                                <StyledTableCell align="center">Preço</StyledTableCell>
+                                <StyledTableCell align="center">Ação</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
 
-                <TableBody >
+                        <TableBody >
 
-                    {/* {(rowsPerPage > 0
-                        ? lista.albuns.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        : lista.albuns
-                    )
-                        .map((row) => (
-                            <StyledTableRow
-                                key={row.id}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 }, height: 40 }}
-                            >
-                                <StyledTableCell align='center' component="th" scope="row" divider={<Divider orientation="vertical" flexItem />}>
-                                    {row.id}
-                                </StyledTableCell>
-                                <StyledTableCell align='center'>
-                                    {row.artist}
-                                </StyledTableCell>
-                                <StyledTableCell align='center'>
-                                    {row.title}
-                                </StyledTableCell>
-                                <StyledTableCell align='right'>
-                                    {parseFloat(row.price).toFixed(2).toString().replace(',','.')}
-                                </StyledTableCell>                                
-                                <StyledTableCell align="center" >
-                                     
-                                </StyledTableCell>
-                            </StyledTableRow>
-                        )
-                        )
-                    } */}
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TablePagination
-                            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                            colSpan={10}
-                            count={lista.length}
-                            rowsPerPage={rowsPerPage}
-                            labelRowsPerPage='Linhas por página'
-                            page={page}
-                            slotProps={{
-                                select: {
-                                    inputProps: {
-                                        'aria-label': 'linhas por pagina'
-                                    },
-                                    native: true,
-                                },
-                            }}
-                            onPageChange={handleChangePage}
-                            onRowsPerPageChange={handleChangeRowsPerPage}
-                            ActionsComponent={TablePaginationActions}
-                        />
-                    </TableRow>
-                </TableFooter>
-            </Table>
-        </TableContainer>
+                            {(rowsPerPage > 0
+                                ? lista.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                : lista
+                            )
+                                .map((row) => (
+                                    <StyledTableRow
+                                        key={row.id}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 }, height: 40 }}
+                                    >
+                                        <StyledTableCell align='center' component="th" scope="row" divider={<Divider orientation="vertical" flexItem />}>
+                                            {row.id}
+                                        </StyledTableCell>
+                                        <StyledTableCell align='center'>
+                                            {row.artist}
+                                        </StyledTableCell>
+                                        <StyledTableCell align='center'>
+                                            {row.title}
+                                        </StyledTableCell>
+                                        <StyledTableCell align='right'>
+                                            {parseFloat(row.price).toFixed(2).toString().replace(',', '.')}
+                                        </StyledTableCell>
+                                        <StyledTableCell align="center" >
+                                            <Button variant='contained' color='primary'>Editar</Button>
+                                            <Button variant='contained' color='secondary'>Apagar</Button>
+                                        </StyledTableCell>
+                                    </StyledTableRow>
+                                )
+                                )
+                            }
+                        </TableBody>
+                        <TableFooter>
+                            <TableRow>
+                                <TablePagination
+                                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                                    colSpan={10}
+                                    count={lista.length}
+                                    rowsPerPage={rowsPerPage}
+                                    labelRowsPerPage='Linhas por página'
+                                    page={page}
+                                    slotProps={{
+                                        select: {
+                                            inputProps: {
+                                                'aria-label': 'linhas por pagina'
+                                            },
+                                            native: true,
+                                        },
+                                    }}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                    ActionsComponent={TablePaginationActions}
+                                />
+                            </TableRow>
+                        </TableFooter>
+                    </Table>
+                </TableContainer>
+            </>
+        
     )
 }
 export default ListaAlbuns;

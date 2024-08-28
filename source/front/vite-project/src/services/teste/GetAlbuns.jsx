@@ -1,14 +1,19 @@
 const GetAlbuns = async () =>
 {
-    try {
-        let url = `${import.meta.env.VITE_URL_API}/${import.meta.env.VITE_URL_API_ALBUM}`;
-        const response = await fetch(url); 
+    try {        
+        let url = 'http://localhost:5001/album';
+        const response = await fetch(url,{
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "text/plain"
+            },
+        }); 
 
         if (!response.ok) {   
-            return null;            
+            return [];            
         }
 
-        const data = await response.json();
+        const data = response.json();
 
         return data;
         

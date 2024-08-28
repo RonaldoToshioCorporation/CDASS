@@ -13,5 +13,9 @@ export default defineConfig({
     strictPort: true,
     host: true,
     origin: "http://localhost:5173"
+  },
+  warmup: {
+    clientFiles: ['./src/components/*.vue', './src/utils/big-utils.js'],
+    ssrFiles: ['./src/server/modules/*.js'],
   }
 })

@@ -33,12 +33,10 @@ function Navbar(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const handleOpenUserMenu =()=>{
-
-  }
+ 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', color:'black'}}>
-      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>        
+      <IconButton  sx={{ p: 0 }}>        
         <img src={Logo} alt="Logo" />
       </IconButton>
       

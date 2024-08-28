@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+.footer {    
+  position: fixed;  
+  bottom: 0;
+  color: black;
+  font-size: 25px;
+  text-align: 'left';
+}
