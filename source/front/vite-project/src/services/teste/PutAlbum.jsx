@@ -2,7 +2,7 @@ async function PutAlbum(data)
 {    
     let retorno = false;
     try {
-          await fetch(`http://localhost:5000/album`,
+          await fetch(`http://localhost:5001/album`,
                 {
                     method: 'PUT',
                     /*headers: {                        

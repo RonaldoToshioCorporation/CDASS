@@ -2,7 +2,7 @@ async function DeleteAlbum(data)
 {    
     let retorno = false;
     try {
-          await fetch(`http://127.0.0.1:5000/album`,
+          await fetch(`http://127.0.0.1:5001/album`,
                 {
                     method: 'DELETE',                  
                     body: data

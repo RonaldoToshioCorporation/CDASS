@@ -1,8 +1,8 @@
 const GetAlbuns = async () =>
 {
     try {        
-        //let url = 'http://localhost:5001/album';
-        let url = 'http://localhost:5000/albuns';
+        
+        let url = 'http://localhost:5001/albuns';
         const response = await fetch(url,{
             headers: {
                 "Access-Control-Allow-Origin": "*",
