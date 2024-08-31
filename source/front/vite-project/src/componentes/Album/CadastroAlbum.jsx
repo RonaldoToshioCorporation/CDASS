@@ -27,6 +27,7 @@ function CadastroAlbum()
     const [price, setPrice] = useState(0);
     const navigate = useNavigate();
     const [album, setAlbum] = useState({});
+    
     useEffect(()=>{
         GetDados();
 
