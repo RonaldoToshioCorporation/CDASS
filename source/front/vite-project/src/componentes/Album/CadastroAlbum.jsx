@@ -3,6 +3,7 @@ import TituloPagina from '../../componentes/TituloPagina';
 import GetAlbuns from '../../services/teste/GetAlbuns';
 import GetAlbum from '../../services/teste/GetAlbum';
 import PostAlbum from '../../services/teste/PostAlbum';
+import PutAlbum from '../../services/teste/PutAlbum';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
@@ -20,8 +21,7 @@ TextField
 function CadastroAlbum()
 {
     const { codigo } = useParams();
-    const [id, setId] = useState(0);
-    const [lista, setLista] = useState([]);
+    const [id, setId] = useState(0);    
     const [title,setTitle]= useState('');
     const [artist,setArtist]= useState('');
     const [price, setPrice] = useState(0);
@@ -37,34 +37,32 @@ function CadastroAlbum()
     },[codigo])
 
     const BuscarRegistro = async ()=>{
-        
-        let albumEncontrado = await GetAlbum(codigo);
+        if (codigo!== undefined)
+        {
+            let albumEncontrado = await GetAlbum(codigo);
 
-        if (albumEncontrado!==null){
-            setId(codigo);
-            setTitle(albumEncontrado.title);
-            setArtist(albumEncontrado.artist);
-            setPrice(albumEncontrado.price);
-            setAlbum(album);
+            if (albumEncontrado!==null){
+                setId(codigo);
+                setTitle(albumEncontrado.title);
+                setArtist(albumEncontrado.artist);
+                setPrice(albumEncontrado.price);
+                setAlbum(albumEncontrado);
+            }
         }
+        
     }
 
     const GetDados = async()=>{
 
         let lista = await GetAlbuns();
-
-        if (id == undefined)
-        {                        
-            if (lista.albuns!== undefined && lista.albuns.length > 0){
-                let maxId =  lista.albuns.reduce((acc, i)=>(i.id > acc.id ? i : acc));
-                let novoId = maxId.id + 1;
-                setId(novoId);
-            }else{
-                setId(1);
-            }
-            setLista(lista.albuns);
-        }
         
+        if (lista.albuns!== undefined && lista.albuns.length > 0){
+            let maxId =  lista.albuns.reduce((acc, i)=>(i.id > acc.id ? i : acc));
+            let novoId = maxId.id + 1;
+            setId(novoId);            
+        }else{
+            setId(1);
+        }
     }
 
     const retornar = ()=>{
@@ -107,19 +105,14 @@ function CadastroAlbum()
             alert('Preço não informado!');
             return;
         }
-        const postData = new FormData();
-        /* let data = {
-            id : id,
-            title : title,
-            artist : artist,
-            price : parseFloat(price)
-        } */
-        postData.append('id', id);
-        postData.append('title', title);
-        postData.append('artist', artist);
-        postData.append('price', price);
+        const data = new FormData();
+        
+        data.append('id', id);
+        data.append('title', title);
+        data.append('artist', artist);
+        data.append('price', price);
 
-        let retorno = await PostAlbum(postData);
+        let retorno = await codigo !== undefined ? PutAlbum(data): PostAlbum(data);
 
         if (retorno)
         {
@@ -131,10 +124,14 @@ function CadastroAlbum()
         }
 
     }
+
+    const descricaoTitulo=()=>{
+        return  codigo!== undefined ? 'Cadastro de Album - Editar Registro ':'Cadastro de Album - Novo Registro'
+    }
     return (
         <React.Fragment>
             <Container>
-                <TituloPagina titulo={'Cadastro de Album'} />
+                <TituloPagina titulo={descricaoTitulo()} />
                 <Divider textAlign="left"><h4>Informações</h4></Divider>
                 <Stack
                     component="div"
