@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
     Box,
     Button,
@@ -35,6 +35,12 @@ registerLocale('pt-BR', ptBR);
 setDefaultLocale('pt-BR');
 
 import GetAlbuns from '../../services/teste/GetAlbuns';
+import DeleteAlbum from'../../services/teste/DeleteAlbum';
+
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
+
 
 function TablePaginationActions(props) {
     const theme = useTheme();
@@ -101,7 +107,7 @@ function ListaAlbuns() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [lista, setLista] = useState([]);
-
+    const navigate = useNavigate();
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -140,7 +146,39 @@ function ListaAlbuns() {
             border: 0,
         },
     }));
+    
+    const ExcluirRegistro = async(id)=>{
+        let data = new FormData();
+        data.append("id", id)
+        let retorno = await DeleteAlbum(data);
+        if(retorno){
+            alert('Registro excluido com sucesso!');
+            GetDados();
+        }else{
+            alert('Ocorreu um erro!');
+        }
+    }
 
+    const ConfirmarExclusao = (id) =>{
+        confirmAlert({
+            title: '',
+            message: `Tem certeza que deseja excluir este registro ID nro.: [ ${id} ]?`,
+            buttons: [
+              {
+                label: 'Sim',
+                onClick: () => ExcluirRegistro(id)
+              },
+              {
+                label: 'Não',
+                
+              }
+            ]
+          });
+    }
+
+    const EditarRegistro = (id )=>{
+        navigate('/Teste/EditarAlbum/'+ id);
+    }
 
     Moment.locale('pt-BR');
 
@@ -187,8 +225,8 @@ function ListaAlbuns() {
                                             {parseFloat(row.price).toFixed(2).toString().replace(',', '.')}
                                         </StyledTableCell>
                                         <StyledTableCell align="center" >
-                                            <Button variant='contained' color='primary'>Editar</Button>
-                                            <Button variant='contained' color='secondary'>Apagar</Button>
+                                            <Button variant='contained' color='primary' onClick ={()=>{EditarRegistro(row.id)}}>Editar</Button>
+                                            <Button variant='contained' color='secondary' onClick={() =>{ConfirmarExclusao(row.id)}}>Apagar</Button>
                                         </StyledTableCell>
                                     </StyledTableRow>
                                 )

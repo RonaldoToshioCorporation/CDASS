@@ -166,7 +166,7 @@ def del_album(form: AlbumBuscaDelSchema):
         return {"message": error_msg}, 500
 
 # Consulta de todos os albuns
-@app.get('/album', tags=[album_Tag],
+@app.get('/albuns', tags=[album_Tag],
          responses={"200": ListaAlbunsSchema,
                     "404": ErrorSchema,
                     "500": ErrorSchema})
@@ -197,3 +197,41 @@ def get_albuns():
         logger.warning(
             f"Erro ao consultar albuns, {error_msg}")
         return {"message": error_msg}, 500
+
+
+# Consulta album especifico 
+@app.get('/album', tags=[album_Tag],
+         responses={"200": AlbumBuscaEditSchema,
+                    "404": ErrorSchema,
+                    "500": ErrorSchema})
+def get_album_id(query: AlbumBuscaEditSchema):
+
+    id = query.id;
+
+    logger.debug( f"Consultando um album por id = #{id} ")
+
+    try:
+        # criando conexão com a base
+        session = Session()
+        # fazendo a busca
+        album = session.query(Album).filter(Album.id == id).first();
+        
+        
+        # se não há marcas cadastrados
+        if (not album):
+
+            error_msg ="Não foi encontrado o album!"
+            logger.warning(f"Erro ao buscar o album id, {id}")
+            return {"message": error_msg}, 404            
+
+        else:            
+            # retorna a representação de modelos            
+            return apresenta_album(album), 200
+
+    except Exception as e:
+        # caso um erro fora do previsto
+        error_msg = f"Não foi possível consultar o album :/{str(e)}"
+        logger.warning(
+            f"Erro ao consultar o album, {error_msg}")
+        return {"message": error_msg}, 500
+ 

@@ -27,6 +27,11 @@ class AlbumEditSchema(BaseModel):
     artist: str = ''
     price: float = 0
 
+class AlbumBuscaEditSchema(BaseModel):
+    '''
+        modelo de dados de recebimento para a busca de registro de album 
+    '''
+    id: int = 1;
 
 class ListaAlbunsSchema(BaseModel):
     """ Define como retorna a lista de Albuns.

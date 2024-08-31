@@ -22,7 +22,9 @@ url_object = URL.create(
     host="localhost",
     database="dbteste",
 )
+
 url = 'postgresql+psycopg2://postgres:postgres@192.168.15.138/dbteste?port=5432'
+
 # cria a engine de conexão com o banco
 engine = create_engine(url)
 

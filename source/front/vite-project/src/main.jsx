@@ -25,6 +25,10 @@ const router = createBrowserRouter([
         {
           path:"Teste/CadastroAlbum",
           element: <CadastroAlbum />
+        },
+        {
+          path:"Teste/EditarAlbum/:codigo",
+          element: <CadastroAlbum />
         }
     ],
   }
