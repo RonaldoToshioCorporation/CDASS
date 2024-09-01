@@ -124,7 +124,7 @@ function CadastroAlbum()
         }
 
     }
-
+     
     const descricaoTitulo=()=>{
         return  codigo!== undefined ? 'Cadastro de Album - Editar Registro ':'Cadastro de Album - Novo Registro'
     }
@@ -172,10 +172,11 @@ function CadastroAlbum()
                     <FormControl >
                         <TextField
                             label='Preço'                             
-                            id="txtPrice"                        
+                            id="txtPrice" 
+                            type="number"                       
                             value={price}                            
-                            inputProps={{maxLength:300, style: { width: '350px' } }}
-                            onChange = {(e)=>setPrice(e.target.value)}                              
+                            inputProps={{maxLength:6,step:"0.01",min: "0", style: { width: '350px' } }}
+                            onChange = {(e)=>setPrice(parseFloat(e.target.value).toFixed(2))}                              
                         />                        
                     </FormControl>  
                 </Stack>

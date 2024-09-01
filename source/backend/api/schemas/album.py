@@ -1,15 +1,17 @@
-from pydantic import BaseModel
+import decimal
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, List
 from model import Base
 from model.album import Album
 from sqlalchemy import Numeric
  
 class AlbumSchema(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
     """Define como um novo registro que será inserido """        
     id: int  = 1    
     title: str  = ""
     artist:str = ""
-    price: float = 0 
+    price: decimal = 0 
 
 class AlbumViewSchema(BaseModel):
     """ Define como deverá retornado

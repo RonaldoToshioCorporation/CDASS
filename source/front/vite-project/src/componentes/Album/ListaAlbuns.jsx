@@ -173,11 +173,15 @@ function ListaAlbuns() {
             ]
           });
     }
-
+    function ccyFormat(num) {
+        let valorOriginal = `${num.toFixed(2)}`;
+        let retorno = parseFloat(valorOriginal).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });        
+        return retorno;
+      }
     const EditarRegistro = (id )=>{
         navigate('/Teste/EditarAlbum/'+ id);
     }
-
+     
     Moment.locale('pt-BR');
 
     return (
@@ -220,7 +224,7 @@ function ListaAlbuns() {
                                             {row.title}
                                         </StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            {parseFloat(row.price).toFixed(2).toString().replace(',', '.')}
+                                            {ccyFormat(row.price)}
                                         </StyledTableCell>
                                         <StyledTableCell align="center" >
                                             <Button variant='contained' color='primary' onClick ={()=>{EditarRegistro(row.id)}}>Editar</Button>
