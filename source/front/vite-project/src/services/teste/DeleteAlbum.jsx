@@ -2,7 +2,8 @@ async function DeleteAlbum(data)
 {    
     let retorno = false;
     try {
-          await fetch(`http://127.0.0.1:5001/album`,
+          let url = `${import.meta.env.VITE_URL_API}/${import.meta.env.VITE_URL_API_ALBUM}`;
+          await fetch(url,
                 {
                     method: 'DELETE',                  
                     body: data

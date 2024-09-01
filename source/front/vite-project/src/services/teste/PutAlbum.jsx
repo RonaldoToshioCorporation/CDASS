@@ -2,7 +2,8 @@ async function PutAlbum(data)
 {    
     let retorno = false;
     try {
-          await fetch(`http://localhost:5001/album`,
+         let url = `${import.meta.env.VITE_URL_API}/${import.meta.env.VITE_URL_API_ALBUM}`;
+          await fetch(url,
                 {
                     method: 'PUT',
                     /*headers: {                        

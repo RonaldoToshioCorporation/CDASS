@@ -7,7 +7,7 @@ import PutAlbum from '../../services/teste/PutAlbum';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
-import {Link, useNavigate,useParams} from 'react-router-dom';
+import {useNavigate,useParams} from 'react-router-dom';
 
 import {
 Button,
@@ -26,7 +26,7 @@ function CadastroAlbum()
     const [artist,setArtist]= useState('');
     const [price, setPrice] = useState(0);
     const navigate = useNavigate();
-    const [album, setAlbum] = useState({});
+    
     
     useEffect(()=>{
         GetDados();
@@ -46,8 +46,7 @@ function CadastroAlbum()
                 setId(codigo);
                 setTitle(albumEncontrado.title);
                 setArtist(albumEncontrado.artist);
-                setPrice(albumEncontrado.price);
-                setAlbum(albumEncontrado);
+                setPrice(albumEncontrado.price);                
             }
         }
         
@@ -111,7 +110,7 @@ function CadastroAlbum()
         data.append('id', id);
         data.append('title', title);
         data.append('artist', artist);
-        data.append('price', price);
+        data.append('price', price.toString().replace(',','.'));
 
         let retorno = await codigo !== undefined ? PutAlbum(data): PostAlbum(data);
 

@@ -1,8 +1,8 @@
 const GetAlbuns = async () =>
 {
-    try {        
-        
-        let url = 'http://localhost:5001/albuns';
+    try {
+        let url = `${import.meta.env.VITE_URL_API}/${import.meta.env.VITE_URL_API_GET_ALBUNS}`;
+
         const response = await fetch(url,{
             headers: {
                 "Access-Control-Allow-Origin": "*",

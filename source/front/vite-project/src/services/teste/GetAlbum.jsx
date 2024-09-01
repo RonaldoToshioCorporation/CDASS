@@ -1,7 +1,7 @@
 const GetAlbum = async(id) =>{
     try {        
-        
-        let url = 'http://127.0.0.1:5001/album?id='+ id;
+        let url = `${import.meta.env.VITE_URL_API}/${import.meta.env.VITE_URL_API_GET_ALBUM}${id}`;
+
         const response = await fetch(url,{
             headers: {
                 "Access-Control-Allow-Origin": "*",
